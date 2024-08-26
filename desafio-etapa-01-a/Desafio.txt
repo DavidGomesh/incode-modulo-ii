@@ -1,0 +1,1 @@
+Descrição: Crie um programa que gerencia uma lista de tarefas. O usuário poderá adicionar novas tarefas, marcar tarefas como concluídas e listar todas as tarefas atuais. O programa deve continuar executando até que o usuário decida sair.
