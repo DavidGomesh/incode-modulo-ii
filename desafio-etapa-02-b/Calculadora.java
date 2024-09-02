@@ -10,9 +10,9 @@ public class Calculadora {
         do {
             System.out.println("\n\n\n\n\n");
             System.out.println("===== MENU DE OPERACOES =====");
-            System.out.println("1 - Adiçao");
+            System.out.println("1 - Adicao");
             System.out.println("2 - Subtracao");
-            System.out.println("3 - Multiplicaçao");
+            System.out.println("3 - Multiplicacao");
             System.out.println("4 - Divisao");
             System.out.println("5 - Modulo");
             System.out.println("0 - Sair");
