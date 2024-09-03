@@ -66,7 +66,7 @@ public class Calculadora {
         int num2 = lerNumero();
         scanner.nextLine();
         
-        int result = num1 + num2;
+        int result = num1 - num2;
         System.out.println(
             "\nResultado: " + num1 + " - " + num2 + " = " + result
         );
