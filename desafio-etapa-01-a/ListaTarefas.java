@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ListaTarefas {
@@ -11,14 +10,14 @@ public class ListaTarefas {
         final var tarefas    = new ArrayList<String>();
         final var concluidas = new ArrayList<Boolean>();
 
-        System.out.println("\n\n\n\n\n");
-        System.out.println("Banco de tarefas alimentado!\n\n");
-        concluidas.addAll(Arrays.asList(false, false, false));
-        tarefas.addAll(Arrays.asList(
-            "Estudar para prova de Calculo",
-            "Tirar copia da chave de casa",
-            "Separar roupas velhas"
-        ));
+        // System.out.println("\n\n\n\n\n");
+        // System.out.println("Banco de tarefas alimentado!\n\n");
+        // concluidas.addAll(Arrays.asList(false, false, false));
+        // tarefas.addAll(Arrays.asList(
+        //     "Estudar para prova de Calculo",
+        //     "Tirar copia da chave de casa",
+        //     "Separar roupas velhas"
+        // ));
 
         int opcao = 0;
         do {

@@ -179,8 +179,15 @@ switch (opcao) {
     default: /* Código omitido */ break;
 }
 ```
+
+## Aplicação rodando
+
+| ![Aplicação rodando](./lista-tarefas.gif "Aplicação rodando") |
+|-|
+| *Aplicação rodando* |
+
 ## Desenvolvedor
 
 | <img alt="@DavidGomesh" src="https://avatars.githubusercontent.com/DavidGomesh?size=64" style="border-radius: 50%;"> |
 | :-: |
-| **David Gomesh** |
+| *David Gomesh* |
