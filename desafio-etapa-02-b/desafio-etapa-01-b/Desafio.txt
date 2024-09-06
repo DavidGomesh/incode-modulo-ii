@@ -1,9 +1,0 @@
-Calculadora de Números Inteiros
-Descrição:
-Você deve criar um programa em Java que funcione como uma calculadora simples para números inteiros. 
-O programa deve permitir ao usuário realizar operações matemáticas básicas (adição, subtração, multiplicação, divisão, e módulo) em um loop até que o usuário decida sair.
-
-- Mantenha o menu rodando até que o usuário escolha a opção: Sair do sistema.
-- Garanta que operações como divisão e módulo não sejam feitas com zero. Em caso de divisão por zero, exiba uma mensagem de erro e volte ao menu principal.
-- Adicione validações para garantir que os números inseridos sejam válidos.
-- Permita que o usuário continue realizando operações sem reiniciar o programa
