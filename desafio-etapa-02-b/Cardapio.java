@@ -9,9 +9,7 @@ public class Cardapio {
             menus.get(diaSemana).put(turno, refeicao);
         }
         catch (Exception e) {
-            menus.put(diaSemana, new HashMap<>(
-                Map.of(turno, refeicao)
-            ));
+            menus.put(diaSemana, new HashMap<>(Map.of(turno, refeicao)));
         }
     }
 

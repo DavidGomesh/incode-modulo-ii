@@ -35,9 +35,9 @@ public class Run {
                 case 3 -> cadastrarSalada();
                 case 4 -> cadastrarRefeicao();
                 case 5 -> exibirItensCadastrados();
-                case 6 -> println("[NOT IMPLEMENTED]\nADICIONAR REFEICAO A CARDAPIO");
+                case 6 -> adicionarRefeicaoCardapio();
                 case 7 -> exibirCardapio();
-                case 0 -> println("[NOT IMPLEMENTED]\nSAIR");
+                case 0 -> println("PROGRAMA ENCERRADO!");
                 default -> opcao = -1;
             }
 
@@ -113,6 +113,9 @@ public class Run {
 
         println("");
 
+        print("DESCRICAO: ");
+        var descricao = scanner.nextLine();
+
         int idxPratoPrincipal = -1;
         do {
             println("\nSELECIONE O PRATO PRINCIPAL");
@@ -144,6 +147,7 @@ public class Run {
         } while(idxSalada < 1 || idxSalada > saladas.size());
 
         refeicoes.add(new Refeicao(
+            descricao,
             pratosPrincipais.get(idxPratoPrincipal-1),
             acompanhamentos.get(idxAcompanhamento-1),
             saladas.get(idxSalada-1)
@@ -151,6 +155,62 @@ public class Run {
 
         println("\n- Refeicao cadastrada!\n");
         scanner.nextLine();
+    }
+
+    static void adicionarRefeicaoCardapio() {
+        println("\n========== ADICIONAR REFEICAO A CARDAPIO ==========\n");
+        exibirRefeicoes();
+
+        int idxRefeicao = -1;
+        do {
+            println("\nSELECIONE A REFEICAO");
+            idxRefeicao = solicitarIndice();
+
+            if (idxRefeicao < 1 || idxRefeicao > refeicoes.size()) {
+                println("INDICE INVALIDO!");
+                idxRefeicao = -1;
+            }
+        } while(idxRefeicao == -1);
+
+        println("\nSELECIONE UM DIA DA SEMANA: ");
+        for (DiaSemana diaSemana : DiaSemana.values()) {
+            System.out.println((diaSemana.ordinal() + 1) + " - " + diaSemana);
+        }
+        
+        int idxDiaSemana = -1;
+        do {
+            idxDiaSemana = solicitarIndice();
+            scanner.nextLine();
+            if (idxDiaSemana < 1 || idxDiaSemana > DiaSemana.values().length) {
+                println("INDICE INVALIDO!");
+                idxDiaSemana = -1;
+            }
+
+        } while (idxDiaSemana == -1);
+
+        println("\nSELECIONE UM TURNO: ");
+        for (Turno turno : Turno.values()) {
+            System.out.println((turno.ordinal() + 1) + " - " + turno);
+        }
+
+        int idxTurno = -1;
+        do {
+            idxTurno = solicitarIndice();
+            scanner.nextLine();
+            if (idxTurno < 1 || idxTurno > Turno.values().length) {
+                println("INDICE INVALIDO!");
+                idxTurno = -1;
+            }
+
+        } while (idxTurno == -1);
+
+        cardapio.adicionarRefeicao(
+            DiaSemana.values()[idxDiaSemana-1], 
+            Turno.values()[idxTurno-1], 
+            refeicoes.get(idxRefeicao-1)
+        );
+
+        println("\nRefeicao adicionada ao Cardapio!\n");
     }
 
     static void exibirItensCadastrados() {
@@ -185,7 +245,8 @@ public class Run {
     static void exibirRefeicoes() {
         println("\nREFEICOES");
         for (int i=0; i<refeicoes.size(); i++) {
-            println((i+1) + " ----------------------------------------:");
+            println("----------------------------------------");
+            print("# " + (i+1) + " - ");
             exibirRefeicao(refeicoes.get(i));
         }
     }
@@ -214,15 +275,15 @@ public class Run {
     }
 
     static void exibirDiaSemana(DiaSemana diaSemana) {
-        print("DIA: ");
+        print("DIA:   ");
         switch (diaSemana) {
-            case DOMINGO -> println("Domingo");
-            case SEGUNDA -> println("Segunda");
-            case TERCA -> println("Terca");
-            case QUARTA -> println("Quarta");
-            case QUINTA -> println("Quinta");
-            case SEXTA -> println("Sexta");
-            case SABADO -> println("Sabado");
+            case DOMINGO -> println("Domingo\n");
+            case SEGUNDA -> println("Segunda\n");
+            case TERCA -> println("Terca\n");
+            case QUARTA -> println("Quarta\n");
+            case QUINTA -> println("Quinta\n");
+            case SEXTA -> println("Sexta\n");
+            case SABADO -> println("Sabado\n");
         };
     }
 
@@ -236,9 +297,10 @@ public class Run {
     }
 
     static void exibirRefeicao(Refeicao refeicao) {
-        println("- Prato principal: " + refeicao.gePratoPrincipal().getDescricao());
-        println("- Acompanhamento: " + refeicao.getAcompanhamento().getDescricao());
-        println("- Salada: " + refeicao.getSalada().getDescricao());
+        println(refeicao.getDescricao());
+        println("> Prato principal:   " + refeicao.getPratoPrincipal().getDescricao());
+        println("> Acompanhamento:    " + refeicao.getAcompanhamento().getDescricao());
+        println("> Salada:            " + refeicao.getSalada().getDescricao());
         println("");
     }
 
@@ -272,7 +334,7 @@ public class Run {
     }
 
     static void imprimirEspacos() {
-        print("\n\n\n\n\n");
+        print("\n\n\n\n\n\n\n\n\n");
     }
 
     static void println(String str) {
@@ -303,9 +365,13 @@ public class Run {
         ));
 
         refeicoes.addAll(List.of(
-            new Refeicao(pratosPrincipais.get(0), acompanhamentos.get(0), saladas.get(0)),
-            new Refeicao(pratosPrincipais.get(1), acompanhamentos.get(0), saladas.get(0)),
-            new Refeicao(pratosPrincipais.get(2), acompanhamentos.get(1), saladas.get(0))
+            new Refeicao("Frango com Arroz e S. Caesar", pratosPrincipais.get(0), acompanhamentos.get(0), saladas.get(0)),
+            new Refeicao("Peixe com Arroz e S. Caesar", pratosPrincipais.get(1), acompanhamentos.get(0), saladas.get(0)),
+            new Refeicao("Carne com Batata e S. Caesar", pratosPrincipais.get(2), acompanhamentos.get(1), saladas.get(0))
         ));
+
+        cardapio.adicionarRefeicao(DiaSemana.SEGUNDA, Turno.MATUTINO, refeicoes.get(0));
+        cardapio.adicionarRefeicao(DiaSemana.SEGUNDA, Turno.VESPERTINO, refeicoes.get(1));
+        cardapio.adicionarRefeicao(DiaSemana.TERCA, Turno.MATUTINO, refeicoes.get(0));
     }
 }
